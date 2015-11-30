@@ -15,6 +15,16 @@ module Data.List.Zip
 
 -- | Combines all lists by applying the combining function, using the given
 -- defaults whenever a list exhaustes until the last list is empty.
+--
+-- For finite lists the following always holds:
+--
+-- > length (zipDefWith defX defY f xs ys) == max (length xs) (length ys)
+--
+-- and the missing tail will always be extended with the default value:
+--
+-- > drop (length xs) (zipDefWith defX defY f xs ys) == map (f defX) (drop (length xs) ys)
+--
+--
 zipDefWith :: a -> b -> (a -> b -> c) -> [a] -> [b] -> [c]
 zipDefWith ea eb comb = go
   where
@@ -23,8 +33,18 @@ zipDefWith ea eb comb = go
         (_, [])            -> map (\a -> comb a eb) as
         (a : as', b : bs') -> comb a b : go as' bs'
 
+prop_sameLength :: a -> b -> (a -> b -> c) -> [a] -> [b] -> Bool
+prop_sameLength defX defY f xs ys = length (zipDefWith defX defY f xs ys) == max (length xs) (length ys)
+
+prop_extend :: (Eq c) => a -> b -> (a -> b -> c) -> [a] -> [b] -> Bool
+prop_extend defX defY f xs ys = drop (length xs) (zipDefWith defX defY f xs ys) == map (f defX) (drop (length xs) ys)
+
+-- | Analogous to 'zip':
+--
+-- > zipDef defX defY = zipDefWith defX defY (,)
 zipDef :: a -> b -> [a] -> [b] -> [(a, b)]
 zipDef ea eb = zipDefWith ea eb (,)
+
 
 zipDefWith3 :: a -> b -> c -> (a -> b -> c -> d) -> [a] -> [b] -> [c] -> [d]
 zipDefWith3 ea eb ec comb = go

@@ -10,13 +10,13 @@ name:                list-zip-def
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             0.1.0.0
+version:             0.1.0.1
 
 -- A short (one-line) description of the package.
-synopsis:            Provides zips where the combining doesn't stop premature, but instead uses default elements.
+synopsis:            Provides zips where the combining doesn't stop premature, but instead uses default values.
 
 -- A longer description of the package.
--- description:         
+description:         Zip multiple lists together, but don't loose any information. No need to inefficiently check the lengths before and nothing gets evaluated until you reach it in the result list.
 
 -- The license under which the package is released.
 license:             PublicDomain
