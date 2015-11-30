@@ -16,7 +16,7 @@ module Data.List.Zip
 -- | Combines all lists by applying the combining function, using the given
 -- defaults whenever a list exhaustes until the last list is empty.
 zipDefWith :: a -> b -> (a -> b -> c) -> [a] -> [b] -> [c]
-zipDefWith ea eb comb as bs = go as bs
+zipDefWith ea eb comb = go
   where
     go as bs = case (as, bs) of
         ([], _)            -> map (comb ea) bs
@@ -27,7 +27,7 @@ zipDef :: a -> b -> [a] -> [b] -> [(a, b)]
 zipDef ea eb = zipDefWith ea eb (,)
 
 zipDefWith3 :: a -> b -> c -> (a -> b -> c -> d) -> [a] -> [b] -> [c] -> [d]
-zipDefWith3 ea eb ec comb as bs cs = go as bs cs
+zipDefWith3 ea eb ec comb = go
   where
     go as bs cs = case (as, bs, cs) of
         ([], _, _)                  -> zipDefWith eb ec (comb ea) bs cs
@@ -39,7 +39,7 @@ zipDef3 :: a -> b -> c -> [a] -> [b] -> [c] -> [(a, b, c)]
 zipDef3 ea eb ec = zipDefWith3 ea eb ec (,,)
 
 zipDefWith4 :: a -> b -> c -> d -> (a -> b -> c -> d -> e) -> [a] -> [b] -> [c] -> [d] -> [e]
-zipDefWith4 ea eb ec ed comb as bs cs ds = go as bs cs ds
+zipDefWith4 ea eb ec ed comb = go
   where
     go as bs cs ds = case (as, bs, cs, ds) of
         ([], _, _, _)                        -> zipDefWith3 eb ec ed (comb ea) bs cs ds
@@ -54,7 +54,7 @@ zipDef4 ea eb ec ed = zipDefWith4 ea eb ec ed (,,,)
 zipDefWith5 :: a -> b -> c -> d -> e
             -> (a -> b -> c -> d -> e -> f)
             -> [a] -> [b] -> [c] -> [d] -> [e] -> [f]
-zipDefWith5 ea eb ec ed ee comb as bs cs ds es = go as bs cs ds es
+zipDefWith5 ea eb ec ed ee comb = go
   where
     go as bs cs ds es = case (as, bs, cs, ds, es) of
         ([], _, _, _, _)                              -> zipDefWith4 eb ec ed ee (comb ea) bs cs ds es
@@ -71,7 +71,7 @@ zipDef5 ea eb ec ed ee = zipDefWith5 ea eb ec ed ee (,,,,)
 zipDefWith6 :: a -> b -> c -> d -> e -> f
             -> (a -> b -> c -> d -> e -> f -> g)
             -> [a] -> [b] -> [c] -> [d] -> [e] -> [f] -> [g]
-zipDefWith6 ea eb ec ed ee ef comb as bs cs ds es fs = go as bs cs ds es fs
+zipDefWith6 ea eb ec ed ee ef comb = go
   where
     go as bs cs ds es fs = case (as, bs, cs, ds, es, fs) of
         ([], _, _, _, _, _)                                    -> zipDefWith5 eb ec ed ee ef (comb ea) bs cs ds es fs
@@ -89,7 +89,7 @@ zipDef6 ea eb ec ed ee ef = zipDefWith6 ea eb ec ed ee ef (,,,,,)
 zipDefWith7 :: a -> b -> c -> d -> e -> f -> g
             -> (a -> b -> c -> d -> e -> f -> g -> h)
             -> [a] -> [b] -> [c] -> [d] -> [e] -> [f] -> [g] -> [h]
-zipDefWith7 ea eb ec ed ee ef eg comb as bs cs ds es fs gs = go as bs cs ds es fs gs
+zipDefWith7 ea eb ec ed ee ef eg comb = go
   where
     go as bs cs ds es fs gs = case (as, bs, cs, ds, es, fs, gs) of
         ([], _, _, _, _, _, _)                                          -> zipDefWith6 eb ec ed ee ef eg (comb ea) bs cs ds es fs gs
