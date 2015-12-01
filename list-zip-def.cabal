@@ -16,7 +16,7 @@ version:             0.1.0.1
 synopsis:            Provides zips where the combining doesn't stop premature, but instead uses default values.
 
 -- A longer description of the package.
-description:         Zip multiple lists together, but don't loose any information. No need to inefficiently check the lengths before and nothing gets evaluated until you reach it in the result list.
+description:         Zip multiple lists together, but don't lose any information. No need to inefficiently check the lengths before and nothing gets evaluated until you reach it in the result list.
 
 -- The license under which the package is released.
 license:             PublicDomain
