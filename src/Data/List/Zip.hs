@@ -33,8 +33,8 @@ zipDefWith ea eb comb = go
         (_, [])            -> map (\a -> comb a eb) as
         (a : as', b : bs') -> comb a b : go as' bs'
 
-prop_sameLength :: a -> b -> (a -> b -> c) -> [a] -> [b] -> Bool
-prop_sameLength defX defY f xs ys = length (zipDefWith defX defY f xs ys) == max (length xs) (length ys)
+prop_maxLength :: a -> b -> (a -> b -> c) -> [a] -> [b] -> Bool
+prop_maxLength defX defY f xs ys = length (zipDefWith defX defY f xs ys) == max (length xs) (length ys)
 
 prop_extend :: (Eq c) => a -> b -> (a -> b -> c) -> [a] -> [b] -> Bool
 prop_extend defX defY f xs ys = drop (length xs) (zipDefWith defX defY f xs ys) == map (f defX) (drop (length xs) ys)
