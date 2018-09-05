@@ -13,10 +13,10 @@ name:                list-zip-def
 version:             0.1.0.2
 
 -- A short (one-line) description of the package.
-synopsis:            Provides zips where the combining doesn't stop premature, but instead uses default values.
+synopsis:            Provides zips with default values.
 
 -- A longer description of the package.
-description:         Zip multiple lists together, but don't lose any information. No need to inefficiently check the lengths before and nothing gets evaluated until you reach it in the result list.
+description:         Typical zip functions like `zip`, `zipWith`, and `zipWith3` will stop with the shortest list exhausted. Consequently information is lost. This library solves this issue by inserting default values. The `these` package serves a similar purpose but allows more than just lists to be zipped with the `Align` type class. However, zipping several lists and using defaults is not as easy.
 
 -- The license under which the package is released.
 license:             PublicDomain

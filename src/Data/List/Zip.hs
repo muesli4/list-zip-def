@@ -13,8 +13,8 @@ module Data.List.Zip
     , zipDef7
     ) where
 
--- | Combines all lists by applying the combining function, using the given
--- defaults whenever a list exhaustes until the last list is empty.
+-- | Combines all lists by applying the combining function using the given
+-- defaults whenever a list is exhausted until the last list is empty.
 --
 -- For finite lists the following always holds:
 --
